@@ -1,0 +1,47 @@
+<!------------>
+<!-- Header -->
+<!------------>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Products</ion-title>
+    <ion-menu-button slot="start"></ion-menu-button>
+  </ion-toolbar>
+</ion-header>
+
+<!------------->
+<!-- Content -->
+<!------------->
+<ion-content>
+  <ion-grid *ngIf="products">
+    <ion-row>
+      <ion-searchbar
+        debounce="500"
+        placeholder="Search for a product"
+        (ionInput)="filterProducts($event)"
+        class="ion-no-padding"
+        style="padding-left: 4px; padding-right: 4px;"
+      ></ion-searchbar>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" *ngFor="let product of products">
+        <ion-card
+          button
+          [routerLink]="product.id.toString()"
+          class="ion-no-margin"
+        >
+          <ion-card-header>
+            <ion-card-title>{{ product.name }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-img [src]="product.images[0]"></ion-img>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<!------------>
+<!-- Footer -->
+<!------------>
+<ion-footer> </ion-footer>
